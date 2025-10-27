@@ -65,24 +65,26 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Intersection Observer for animations
+// Intersection Observer for animations (earlier trigger)
 const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  threshold: 0.01,
+  rootMargin: '0px 0px -20px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('fade-in-up');
+      obs.unobserve(entry.target); // animate once
     }
   });
 }, observerOptions);
 
-// Observe elements for animation
-document.querySelectorAll('.step, .revenue-column, .rewards-column, .ecosystem-item, .impact-item, .timeline-item, .team-card, .problem-card, .solution-card, .competitive-card').forEach(el => {
-  observer.observe(el);
-});
+// Observe elements for animation (same list)
+document.querySelectorAll(
+  '.step, .revenue-column, .rewards-column, .ecosystem-item, .impact-item, .timeline-item, .team-card, .problem-card, .solution-card, .competitive-card'
+).forEach(el => observer.observe(el));
+
 
 // Parallax effect for hero section (disabled to prevent overlay issues)
 // window.addEventListener('scroll', () => {
@@ -237,11 +239,11 @@ const timelineObserver = new IntersectionObserver((entries) => {
       timelineItems.forEach((item, index) => {
         setTimeout(() => {
           item.classList.add('fade-in-up');
-        }, index * 200);
+        }, index + 200);
       });
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.1 });
 
 const timeline = document.querySelector('.timeline');
 if (timeline) {
