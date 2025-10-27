@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vigor - Earn Rewards for Living Life</title>
+  <title>Vigor - Win Wellness</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
@@ -24,7 +24,7 @@
         <li><a href="#ecosystem">Ecosystem</a></li>
         <li><a href="#impact">Impact</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
-        <li><a href="#contact" class="cta-button">Get Started</a></li>
+        <!-- <li><a href="#contact" class="cta-button">Get Started</a></li> -->
       </ul>
       <div class="hamburger">
         <span></span>
@@ -53,7 +53,7 @@
     <div class="hero-stats-start" style="height: 1px;"></div>
     <div class="hero-stats">
       <div class="stat">
-        <h3>$1T</h3>
+        <h3 id="counter">$1,000,000,000,000</h3>
         <p>Global wellness economy value</p>
       </div>
       <div class="stat-description">
@@ -67,12 +67,22 @@
   <section class="problem-section">
     <div class="container">
       <h2>The Problem</h2>
-      <div class="problem-content">
-        <div class="problem-image">
-          <div class="phone-addiction"></div>
+      <div class="problem-cards">
+        <div class="problem-card">
+          <div class="problem-card-image">
+            <div class="phone-addiction"></div>
+          </div>
+          <h3>Digital Addiction</h3>
+          <p>People spend excessive time on their phones, leading to decreased physical activity and poor health habits.
+          </p>
         </div>
-        <div class="solution-image">
-          <div class="outdoor-activity"></div>
+        <div class="problem-card">
+          <div class="problem-card-image">
+            <div class="outdoor-activity"></div>
+          </div>
+          <h3>Lack of Motivation</h3>
+          <p>Without proper incentives and rewards, people struggle to maintain healthy lifestyle choices and outdoor
+            activities.</p>
         </div>
       </div>
     </div>
@@ -85,15 +95,27 @@
       <p class="subtitle">Empowering Healthy Choices</p>
       <p class="solution-text">Vigor connects users with wellness brands, rewarding them for <strong>real-world</strong>
         healthy actions, making fitness and well-being a <strong>fun, engaging</strong> experience.</p>
-      <div class="solution-images">
-        <div class="solution-img">
-          <div class="app-interface"></div>
+      <div class="solution-cards">
+        <div class="solution-card">
+          <div class="solution-card-image">
+            <div class="app-interface"></div>
+          </div>
+          <h3>Smart App Interface</h3>
+          <p>Intuitive design that makes tracking healthy activities simple and engaging for users of all ages.</p>
         </div>
-        <div class="solution-img">
-          <div class="hiking-group"></div>
+        <div class="solution-card">
+          <div class="solution-card-image">
+            <div class="hiking-group"></div>
+          </div>
+          <h3>Community Activities</h3>
+          <p>Connect with like-minded individuals through group activities and shared wellness goals.</p>
         </div>
-        <div class="solution-img">
-          <div class="park-wellness"></div>
+        <div class="solution-card">
+          <div class="solution-card-image">
+            <div class="park-wellness"></div>
+          </div>
+          <h3>Outdoor Wellness</h3>
+          <p>Promote outdoor activities and nature-based wellness experiences for better physical and mental health.</p>
         </div>
       </div>
     </div>
@@ -285,28 +307,95 @@
       <p class="subtitle">Market Positioning Overview</p>
       <p class="competitive-text">Understanding the competitive landscape is vital for Vigor's success, showcasing how
         it uniquely addresses wellness while competing with existing platforms.</p>
-      <div class="competitive-images">
-        <div class="competitive-img hiking-trail"></div>
-        <div class="competitive-img beach-yoga-silhouette"></div>
-        <div class="competitive-img smoothie-bowl"></div>
+      <div class="competitive-content">
+        <div class="competitive-card">
+          <div class="competitive-image">
+            <div class="hiking-trail"></div>
+          </div>
+          <h3>Outdoor Fitness Apps</h3>
+          <p>While existing apps focus on gym workouts, Vigor rewards real-world outdoor activities and community
+            engagement, creating deeper connections with nature and local communities.</p>
+        </div>
+        <div class="competitive-card">
+          <div class="competitive-image">
+            <div class="beach-yoga-silhouette"></div>
+          </div>
+          <h3>Wellness Platforms</h3>
+          <p>Unlike generic wellness apps, Vigor creates meaningful partnerships with local businesses and wellness
+            brands, offering personalized rewards that matter to users' daily lives.</p>
+        </div>
+        <div class="competitive-card">
+          <div class="competitive-image">
+            <div class="smoothie-bowl"></div>
+          </div>
+          <h3>Rewards Programs</h3>
+          <p>Traditional rewards focus on purchases, but Vigor rewards healthy behaviors and lifestyle choices,
+            creating a sustainable ecosystem that benefits both users and wellness brands.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Funding Section -->
-  <!-- <section class="funding">
+  <!-- The Team Section -->
+  <section class="the-team">
     <div class="container">
-      <h2>Funding and Support</h2>
-      <div class="funding-content">
-        <p>We're seeking strategic partnerships and funding to accelerate our mission of transforming the wellness
-          industry through innovative rewards and community engagement.</p>
-        <div class="funding-buttons">
-          <button class="btn-primary">Invest with Us</button>
-          <button class="btn-secondary">Partner with Us</button>
+      <h2>The Team</h2>
+      <p class="subtitle">Meet the people behind Vigor</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-image">
+            <div class="team-avatar">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E03AQFtLU8-8dUS9g/profile-displayphoto-shrink_400_400/B4EZWxTnZLHgAg-/0/1742436464552?e=1762992000&v=beta&t=oJ380Uk52_FKKwOADOsrij6TMYqNyjjPtr5ZYBzUZqo"
+                alt="AT">
+            </div>
+          </div>
+          <h3>Anmol Thapa</h3>
+          <p>Computer Science</p>
+          <p class="team-description">Passionate about wellness technology and community building, Anmol leads our
+            vision to make healthy living rewarding and accessible for everyone.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-image">
+            <div class="team-avatar">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E03AQEsfztitxEaBw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714865087077?e=1762992000&v=beta&t=WeLzrk2qPHYmClnT59TCEZrpQGIUfG3Aqa0aHPHcpxA"
+                alt="JEA">
+            </div>
+          </div>
+          <h3>Jihad El-Amin</h3>
+          <p>Computer Engineering</p>
+          <p class="team-description">Tech innovator with expertise in mobile development and data analytics, Jihad
+            builds the technology that powers our wellness ecosystem.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-image">
+            <div class="team-avatar">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D5603AQHyT9SkNpID6w/profile-displayphoto-scale_400_400/B56ZlEvZC8IsAg-/0/1757794898602?e=1762992000&v=beta&t=HwiReD74_QHe42o8uvHuN9RVZ-yKoC4bU03f4USH7WQ"
+                alt="SD">
+            </div>
+          </div>
+          <h3>Shaunak Dogra</h3>
+          <p>Computer Science</p>
+          <p class="team-description">Certified nutritionist and wellness expert, Shaunak ensures our platform
+            promotes
+            evidence-based healthy lifestyle choices and sustainable habits.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-image">
+            <div class="team-avatar">
+              <img src="" alt="ES">
+            </div>
+          </div>
+          <h3>Ekamjot Singh</h3>
+          <p>Data Science & Computer Science</p>
+          <p class="team-description">Business development specialist focused on building relationships with wellness
+            brands and creating meaningful partnerships that benefit our community.</p>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -314,7 +403,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <h3>VIGOR</h3>
-          <p>Earn Rewards for Living Life</p>
+          <p>Win Wellness</p>
         </div>
         <div class="footer-links">
           <div class="footer-column">
@@ -330,7 +419,7 @@
             <ul>
               <li><a href="#impact">Impact</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="#careers">Careers</a></li>
+              <!-- <li><a href="#careers">Careers</a></li> -->
             </ul>
           </div>
           <div class="footer-column">
@@ -344,7 +433,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Vigor. All rights reserved.</p>
+        <p>&copy; 2025 Vigor. All rights reserved.</p>
       </div>
     </div>
   </footer>

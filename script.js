@@ -2,6 +2,8 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
+let animated = false;
+
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
@@ -79,7 +81,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.step, .revenue-column, .rewards-column, .ecosystem-item, .impact-item, .timeline-item').forEach(el => {
+document.querySelectorAll('.step, .revenue-column, .rewards-column, .ecosystem-item, .impact-item, .timeline-item, .team-card, .problem-card, .solution-card, .competitive-card').forEach(el => {
   observer.observe(el);
 });
 
@@ -114,32 +116,46 @@ function animateCounter(element, target, duration = 2000) {
 const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const statElement = entry.target.querySelector('h3');
-      if (statElement && statElement.textContent.includes('$')) {
-        const value = statElement.textContent.replace('$', '').replace('T', '');
-        if (!isNaN(value)) {
-          // Start counting from 1 to 4 over 1.5 seconds
-          let currentValue = 1;
-          const targetValue = 4;
-          const duration = 500; // .5 seconds
-          const increment = (targetValue - currentValue) / (duration / 16); // 60fps
-
-          const countUp = () => {
-            currentValue += increment;
-            if (currentValue < targetValue) {
-              statElement.textContent = `$${Math.floor(currentValue)}T`;
-              requestAnimationFrame(countUp);
-            } else {
-              statElement.textContent = '$4T';
-            }
-          };
-
-          // Start the animation
-          statElement.textContent = '$1T';
-          setTimeout(() => {
-            countUp();
-          }, 200);
+      const counterElement = document.getElementById('counter');
+      if (counterElement) {
+        if (animated) {
+          return;
         }
+        animated = true;
+        // Start counting from 1 trillion to 4 trillion over 1 second
+        let currentValue = 1000000000000; // 1 trillion
+        const targetValue = 4000000000000; // 4 trillion
+        const duration = 1000; // 1 second
+        const startTime = Date.now();
+
+        const formatNumber = (num) => {
+          return num.toLocaleString('en-US');
+        };
+
+        const countUp = () => {
+          const elapsed = Date.now() - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Stronger ease-in-out animation curve (only 50% at full speed)
+          const easeInOut = progress < 0.5
+            ? 4 * progress * progress * progress  // Stronger ease-in (cubic)
+            : 1 - Math.pow(-2 * progress + 2, 4) / 2;  // Stronger ease-out (quartic)
+
+          currentValue = 1000000000000 + (3000000000000 * easeInOut);
+
+          if (progress < 1) {
+            counterElement.textContent = `$${formatNumber(Math.floor(currentValue))}`;
+            requestAnimationFrame(countUp);
+          } else {
+            counterElement.textContent = '$4,000,000,000,000';
+          }
+        };
+
+        // Start the animation
+        counterElement.textContent = '$1,000,000,000,000';
+        setTimeout(() => {
+          countUp();
+        }, 200);
       }
     }
   });
@@ -357,5 +373,3 @@ const debouncedScrollHandler = debounce(() => {
 }, 10);
 
 window.addEventListener('scroll', debouncedScrollHandler);
-
-console.log('Vigor website loaded successfully! 🚀');

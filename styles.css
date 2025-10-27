@@ -299,11 +299,26 @@ body {
   width: 100%;
 }
 
+.stat {
+  text-align: center;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .stat h3 {
   font-size: 3rem;
   font-weight: 800;
   color: var(--primary-orange);
   margin-bottom: 0.5rem;
+  width: 100%;
+  min-width: 400px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  word-break: break-all;
+  hyphens: auto;
 }
 
 .stat p {
@@ -336,20 +351,48 @@ body {
   margin-bottom: 4rem;
 }
 
-.problem-content {
+.problem-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1000px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.problem-image,
-.solution-image {
-  height: 400px;
+.problem-card {
+  background: var(--white);
+  padding: 2rem;
   border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.problem-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.problem-card-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  margin-bottom: 1.5rem;
   overflow: hidden;
   position: relative;
+}
+
+.problem-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.problem-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--dark-gray);
 }
 
 .phone-addiction {
@@ -424,18 +467,48 @@ body {
   font-weight: 700;
 }
 
-.solution-images {
+.solution-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1000px;
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.solution-img {
-  height: 300px;
+.solution-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.solution-card-image {
+  width: 100%;
+  height: 250px;
   border-radius: 15px;
+  margin-bottom: 1.5rem;
   overflow: hidden;
+  position: relative;
+}
+
+.solution-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.solution-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--dark-gray);
 }
 
 .app-interface {
@@ -901,18 +974,66 @@ body {
   color: var(--dark-gray);
 }
 
-.competitive-images {
+.competitive-content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1000px;
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.competitive-img {
-  height: 300px;
+.competitive-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.competitive-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.competitive-image {
+  width: 100%;
+  height: 250px;
   border-radius: 15px;
+  margin-bottom: 1.5rem;
   overflow: hidden;
+  position: relative;
+}
+
+.hiking-trail {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FF6B35, #FF8C42);
+}
+
+.beach-yoga-silhouette {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4A7C59, #6B8E6B);
+}
+
+.smoothie-bowl {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.competitive-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.competitive-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--dark-gray);
 }
 
 .hiking-trail {
@@ -927,41 +1048,93 @@ body {
   background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-/*  Funding
-.funding {
+/* The Team Section */
+.the-team {
   padding: 100px 0;
   background: var(--white);
 }
 
-.funding h2 {
+.the-team h2 {
   text-align: center;
   font-size: 3rem;
   font-weight: 800;
   color: var(--primary-green);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-.funding-content {
-  text-align: center;
-  max-width: 800px;
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.funding-content p {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  color: var(--dark-gray);
-  margin-bottom: 3rem;
+.team-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
 }
 
-.funding-buttons {
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 1.5rem;
   display: flex;
-  gap: 2rem;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
-*/
+.team-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--white);
+  font-weight: 700;
+  overflow: hidden;
+  position: relative;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.team-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+}
+
+.team-card p:not(.team-description) {
+  font-size: 1rem;
+  color: var(--primary-orange);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.team-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--dark-gray);
+  text-align: left;
+}
 
 /* Footer */
 .footer {
@@ -1030,6 +1203,19 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .stat {
+    min-width: 100%;
+    padding: 0 10px;
+  }
+
+  .stat h3 {
+    font-size: 2rem;
+    min-width: 100%;
+    max-width: 100%;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
   .hamburger {
     display: flex;
   }
@@ -1067,11 +1253,11 @@ body {
     gap: 2rem;
   }
 
-  .problem-content {
+  .problem-cards {
     grid-template-columns: 1fr;
   }
 
-  .solution-images {
+  .solution-cards {
     grid-template-columns: 1fr;
   }
 
@@ -1085,7 +1271,8 @@ body {
   }
 
   .ecosystem-grid,
-  .impact-grid {
+  .impact-grid,
+  .team-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1107,7 +1294,7 @@ body {
     margin: 0;
   }
 
-  .competitive-images {
+  .competitive-content {
     grid-template-columns: 1fr;
   }
 
@@ -1129,6 +1316,13 @@ body {
 @media (max-width: 480px) {
   .hero-text h1 {
     font-size: 2rem;
+  }
+
+  .stat h3 {
+    font-size: 1.5rem;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0 5px;
   }
 
   .steps-grid {
