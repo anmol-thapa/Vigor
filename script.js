@@ -39,7 +39,6 @@ if (scrollArrow) {
   });
 }
 
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -94,7 +93,7 @@ document.querySelectorAll('.step, .revenue-column, .rewards-column, .ecosystem-i
 //     }
 // });
 
-// Counter animation for stats
+// Counter animation for stats (utility, unchanged)
 function animateCounter(element, target, duration = 2000) {
   let start = 0;
   const increment = target / (duration / 16);
@@ -112,58 +111,110 @@ function animateCounter(element, target, duration = 2000) {
   updateCounter();
 }
 
-// Animate stats when they come into view
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
+// -------- Start counter ONLY when sentinel is visible --------
+const heroStats = document.querySelector('.hero-stats');
+
+if (heroStats) {
+  const sentinel = document.createElement('div');
+  sentinel.className = 'hero-stats-sentinel';
+  sentinel.setAttribute('aria-hidden', 'true');
+  heroStats.insertAdjacentElement('afterend', sentinel);
+
+  const sentinelObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || animated) return;
+
       const counterElement = document.getElementById('counter');
-      if (counterElement) {
-        if (animated) {
+      if (!counterElement) return;
+
+      // ---- Your original counter logic (unchanged) ----
+      animated = true;
+
+      const START = 1_000_000_000_000;   // 1T
+      const MID = 3_900_000_000_000;     // 3.9T
+      const END = 4_000_000_000_000;     // 4T
+      const LAST5_START = END - 5;
+
+      const PHASE1 = 500;   // ms (1T → 3.9T)
+      const PHASE2 = 500;   // ms (3.9T → 3,999,999,995)
+      const PHASE3 = 500;   // ms (last 5 dollars)
+
+      // Easing
+      const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+      // Inverse of easeOutCubic to precompute when each of the 5 dollars should appear
+      const cubicInv = y => 1 - Math.cbrt(1 - y);
+
+      // Precompute timestamps for each of the last 5 dollars
+      const last5Thresholds = [1, 2, 3, 4, 5].map(k => PHASE3 * cubicInv(k / 5));
+
+      const fmt = n => n.toLocaleString('en-US');
+
+      const t0 = performance.now();
+      let shown = START;
+      let phase3Started = false;
+
+      const raf = () => {
+        const now = performance.now();
+        const elapsed = now - t0;
+
+        if (elapsed <= PHASE1) {
+          // Phase 1: 1T → 3.9T
+          const p1 = Math.min(elapsed / PHASE1, 1);
+          const v = START + (MID - START) * easeOutCubic(p1);
+          shown = Math.min(Math.floor(v), MID);
+          counterElement.textContent = `$${fmt(shown)}`;
+          requestAnimationFrame(raf);
           return;
         }
-        animated = true;
-        // Start counting from 1 trillion to 4 trillion over 1 second
-        let currentValue = 1000000000000; // 1 trillion
-        const targetValue = 4000000000000; // 4 trillion
-        const duration = 1000; // 1 second
-        const startTime = Date.now();
 
-        const formatNumber = (num) => {
-          return num.toLocaleString('en-US');
-        };
+        if (elapsed <= PHASE1 + PHASE2) {
+          // Phase 2: 3.9T → 3,999,999,995
+          const p2Elapsed = elapsed - PHASE1;
+          const p2 = Math.min(p2Elapsed / PHASE2, 1);
+          const v = MID + (LAST5_START - MID) * easeOutCubic(p2);
+          shown = Math.min(Math.floor(v), LAST5_START);
+          counterElement.textContent = `$${fmt(shown)}`;
+          requestAnimationFrame(raf);
+          return;
+        }
 
-        const countUp = () => {
-          const elapsed = Date.now() - startTime;
-          const progress = Math.min(elapsed / duration, 1);
+        // Phase 3: final 5 dollars (ease-out cubic)
+        const p3Elapsed = Math.min(elapsed - (PHASE1 + PHASE2), PHASE3);
 
-          // Stronger ease-in-out animation curve (only 50% at full speed)
-          const easeInOut = progress < 0.5
-            ? 4 * progress * progress * progress  // Stronger ease-in (cubic)
-            : 1 - Math.pow(-2 * progress + 2, 4) / 2;  // Stronger ease-out (quartic)
+        if (!phase3Started) {
+          phase3Started = true;
+          shown = LAST5_START;
+          counterElement.textContent = `$${fmt(shown)}`;
+        }
 
-          currentValue = 1000000000000 + (3000000000000 * easeInOut);
+        // How many of the 5 steps should have appeared so far
+        let steps = 0;
+        for (let i = 0; i < last5Thresholds.length; i++) {
+          if (p3Elapsed >= last5Thresholds[i]) steps = i + 1; else break;
+        }
 
-          if (progress < 1) {
-            counterElement.textContent = `$${formatNumber(Math.floor(currentValue))}`;
-            requestAnimationFrame(countUp);
-          } else {
-            counterElement.textContent = '$4,000,000,000,000';
-          }
-        };
+        const target = LAST5_START + steps;
+        if (target > shown) shown = shown + 1; // advance one dollar per visible step
 
-        // Start the animation
-        counterElement.textContent = '$1,000,000,000,000';
-        setTimeout(() => {
-          countUp();
-        }, 200);
-      }
-    }
-  });
-}, { threshold: 0.5 });
+        counterElement.textContent = `$${fmt(shown)}`;
 
-const statsSection = document.querySelector('.hero-stats');
-if (statsSection) {
-  statsObserver.observe(statsSection);
+        if (p3Elapsed < PHASE3 || shown < END) {
+          requestAnimationFrame(raf);
+        } else {
+          counterElement.textContent = `$${fmt(END)}`;
+        }
+      };
+
+      counterElement.textContent = `$${fmt(START)}`;
+      setTimeout(() => requestAnimationFrame(raf), 200);
+
+      // cleanup: we only need to start once
+      obs.disconnect();
+    });
+  }, { threshold: 0 }); // fire as soon as sentinel touches the viewport
+
+  sentinelObserver.observe(sentinel);
 }
 
 // Add hover effects to cards
