@@ -425,4 +425,18 @@ const debouncedScrollHandler = debounce(() => {
   }
 }, 10);
 
+// Animate line flow when timeline comes into view
+const lineFlowObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('flow-active');
+    }
+  });
+}, { threshold: 0.2 });
+
+const flowTimeline = document.querySelector('.timeline');
+if (flowTimeline) lineFlowObserver.observe(flowTimeline);
+
+
 window.addEventListener('scroll', debouncedScrollHandler);
+

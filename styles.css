@@ -1412,3 +1412,23 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-orange);
 }
+
+/* === Animated flow-down line for timeline === */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 0;
+  /* start collapsed */
+  background: var(--primary-orange);
+  transition: height 2.5s ease-out;
+  /* flow animation */
+}
+
+.timeline.flow-active::before {
+  height: 100%;
+  /* expands down smoothly */
+}
