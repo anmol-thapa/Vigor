@@ -330,12 +330,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Form validation (if forms are added later)
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-}
-
 // Add scroll-to-top functionality
 const scrollToTopBtn = document.createElement('button');
 scrollToTopBtn.innerHTML = '↑';

@@ -402,23 +402,10 @@ body {
   position: relative;
 }
 
-.phone-addiction::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
-  background: #000;
-  border-radius: 20px;
-  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
-}
-
 .outdoor-activity {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #FF6B35, #FF8C42, #FFD23F);
+  background: url('images/10.png') no-repeat center;
   position: relative;
 }
 
@@ -429,7 +416,6 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="sunset" cx="50%" cy="30%" r="60%"><stop offset="0%" style="stop-color:%23FFD23F;stop-opacity:1" /><stop offset="70%" style="stop-color:%23FF6B35;stop-opacity:0.9" /><stop offset="100%" style="stop-color:%23FF8C42;stop-opacity:0.7" /></radialGradient></defs><circle cx="500" cy="300" r="300" fill="url(%23sunset)" /><polygon points="0,600 150,550 300,580 450,560 600,570 750,565 900,575 1000,580 1000,1000 0,1000" fill="%232D5016" opacity="0.8" /></svg>') no-repeat center center;
   background-size: cover;
 }
 
@@ -516,18 +502,6 @@ body {
   height: 100%;
   background: linear-gradient(135deg, #667eea, #764ba2);
   position: relative;
-}
-
-.app-interface::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .hiking-group {
@@ -842,7 +816,7 @@ body {
 }
 
 .local-support {
-  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  background: url('images/17.png')
 }
 
 .environmental {
@@ -1431,4 +1405,116 @@ html {
 .timeline.flow-active::before {
   height: 100%;
   /* expands down smoothly */
+}
+
+/* === Image placements (files in /images) === */
+
+/* Problem section */
+.problem-card .phone-addiction {
+  background: url("images/18.png") center / cover no-repeat;
+}
+
+.problem-card .outdoor-activity {
+  background: url("images/10.png") center / cover no-repeat;
+  /* beach run – lack of outdoor activity */
+}
+
+/* Solution section */
+.solution-card .app-interface {
+  background: url("images/19.png") top / cover no-repeat;
+  /* food app on phone */
+}
+
+.solution-card .hiking-group {
+  background: url("images/3.png") center / cover no-repeat;
+  /* golf swing – social outdoor activity */
+}
+
+.solution-card .park-wellness {
+  background: url("images/1.png") center / cover no-repeat;
+  /* vibrant salad – healthy living vibe */
+}
+
+/* How it works */
+.how-it-works .scan-receipts {
+  background: url("images/6.png") center / cover no-repeat;
+  /* QR receipt */
+}
+
+.how-it-works .activity-data {
+  background: url("images/7.png") center / cover no-repeat;
+  /* line chart */
+}
+
+.how-it-works .healthy-eating {
+  background: url("images/16.png") center / cover no-repeat;
+  /* top-down bowl */
+}
+
+.how-it-works .outdoor-activities {
+  background: url("images/5.png") center / cover no-repeat;
+  /* beach run */
+}
+
+/* Ecosystem */
+.ecosystem .farmers-market {
+  background: url("images/17.png") center / cover no-repeat;
+  /* colorful greens/produce energy */
+}
+
+.ecosystem .outdoor-fitness {
+  background: url("images/3.png") center / cover no-repeat;
+  /* golf/outdoor movement */
+}
+
+/* Competitive (one tasteful photo, keep others gradient) */
+.competitive .smoothie-bowl {
+  background: url("images/1.png") center / cover no-repeat;
+  /* healthy bowl */
+}
+
+/* === New image placements (assume /images/) === */
+
+/* Solution — clearer mappings */
+.solution-card .hiking-group {
+  background: url("images/13.png") center / cover no-repeat;
+  /* wide hiking trail */
+}
+
+.solution-card .park-wellness {
+  background: url("images/11.png") center bottom / cover no-repeat;
+  /* yoga at sunset */
+}
+
+/* keep .app-interface as-is (phone app), not replacing */
+
+/* How it Works — outdoor step feels better with group hike */
+.how-it-works .outdoor-activities {
+  background: url("images/12.png") center / cover no-repeat;
+  /* group hiking */
+}
+
+/* keep .healthy-eating + .scan-receipts + .activity-data as-is for now */
+
+/* Ecosystem — outdoor fitness with alpine hikers */
+.ecosystem .outdoor-fitness {
+  background: url("images/14.png") center / cover no-repeat;
+  /* backpacker in valley */
+}
+
+/* keep .farmers-market for future images */
+
+/* Competitive — use a strong “healthy bowl” photo; leave others gradient */
+.competitive .smoothie-bowl {
+  background: url("images/16.png") center / cover no-repeat;
+  /* rustic bowl on wood */
+}
+
+/* Optional: a second outdoor shot for Competitive, but we’ll keep it free for now
+.competitive .hiking-trail { background: url("images/13.png") center / cover no-repeat; }
+*/
+
+/* Social Impact — wellness promotion with calm yoga visual */
+.social-impact .wellness-promotion {
+  background: url("images/11.png") center bottom / cover no-repeat;
 }
